@@ -67,12 +67,17 @@ func _on_timer_timeout():
 		else:
 			print('game over')
 			state = STATES.NOT_PLAYING
+			self._clear_txt_boxes()
 			self.timer.stop()
 			_update_square_color()
 	elif self.state == STATES.RED:
 		self._start_new_round()
 		
 
+func _clear_txt_boxes() -> void:
+	self.txt_max_sec.text = ""
+	self.txt_min_sec.text = ""
+	self.txt_rounds.text = ""
 
 func _update_square_color():
 	match self.state:
