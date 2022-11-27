@@ -12,7 +12,19 @@ config_version=4
 
 config/name="Red Light Green Light"
 run/main_scene="res://main.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=550
+window/size/height=300
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[global]
+
+low=false
 
 [gui]
 
