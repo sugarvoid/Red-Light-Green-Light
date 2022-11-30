@@ -24,7 +24,7 @@ var rng: RandomNumberGenerator
 
 
 func _ready():
-	rng = RandomNumberGenerator.new()
+	self.rng = RandomNumberGenerator.new()
 	self.timer.connect("timeout", self, "_on_timer_timeout")
 	self.btn_start.connect("pressed", self, "_start_game")
 
@@ -32,8 +32,7 @@ func _ready():
 func _start_new_round():
 	self.state = STATES.GREEN
 	_update_square_color()
-	rng.randomize()
-	var round_length: int = rng.randi_range(go_time.get_min_time(), go_time.get_max_time())
+	var round_length: int = self._get_round_length(go_time.get_min_time(), go_time.get_max_time()) 
 	print(str('Round ', self.current_round))
 	print(str('Green for ', round_length, ' seconds'))
 	self.timer.start(round_length)
@@ -42,8 +41,7 @@ func _start_new_round():
 func _start_rest_mode():
 	self.state = STATES.RED
 	_update_square_color()
-	rng.randomize()
-	var round_length: int = rng.randi_range(rest_time.get_min_time(), rest_time.get_max_time())
+	var round_length: int = self._get_round_length(rest_time.get_min_time(), rest_time.get_max_time()) 
 	print(str('Red for ', round_length, ' seconds'))
 	self.timer.start(round_length)
 
@@ -59,10 +57,10 @@ func _start_game():
 func _on_timer_timeout():
 	if self.state == STATES.GREEN:
 		if self.current_round < total_rounds:
-			current_round += 1
+			self.current_round += 1
 			self._start_rest_mode()
 		else:
-			state = STATES.NOT_PLAYING
+			self.state = STATES.NOT_PLAYING
 			self._clear_txt_boxes()
 			self.timer.stop()
 			_update_square_color()
@@ -75,6 +73,10 @@ func _clear_txt_boxes() -> void:
 	self.go_time.clear_text_edits()
 	self.rest_time.clear_text_edits()
 
+func _get_round_length(lowest: int, highest: int) -> int:
+	rng.randomize()
+	return rng.randi_range(lowest, highest) 
+	
 
 func _update_square_color():
 	match self.state:
