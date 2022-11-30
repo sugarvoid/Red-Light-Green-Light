@@ -40,7 +40,7 @@ func _start_new_round():
 	self.state = STATES.GREEN
 	_update_square_color()
 	rng.randomize()
-	var round_length: float = rng.randf_range(red_min, red_max)
+	var round_length: float = rng.randf_range(green_min, green_max)
 	print(str('Round ', self.current_round))
 	print(str('Green for ', round_length, ' seconds'))
 	self.timer.start(round_length)
@@ -50,7 +50,7 @@ func _start_rest_mode():
 	self.state = STATES.RED
 	_update_square_color()
 	rng.randomize()
-	var round_length: float = rng.randf_range(green_min, green_max)
+	var round_length: float = rng.randf_range(red_min, red_max)
 	print(str('Red for ', round_length, ' seconds'))
 	self.timer.start(round_length)
 
@@ -62,8 +62,10 @@ func _start_game():
 	self.current_round = 1
 	self.red_min = int(txt_red_min.text)
 	self.red_max = int(txt_red_max.text)
+	
 	self.green_min = int(txt_green_min.text)
 	self.green_max = int(txt_green_max.text)
+	
 	self.total_rounds = int(txt_rounds.text)
 	
 	self._start_new_round()
