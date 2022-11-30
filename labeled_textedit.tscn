@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://labeled_textedit.gd" type="Script" id=1]
+
+[node name="LabeledTextEdit" type="HBoxContainer"]
+margin_right = 143.0
+margin_bottom = 29.0
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 7.0
+margin_right = 60.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 60, 0 )
+text = "Text"
+align = 1
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 64.0
+margin_right = 114.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 50, 0 )

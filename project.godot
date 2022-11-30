@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "LabeledTextEdit",
+"language": "GDScript",
+"path": "res://labeled_textedit.gd"
+}, {
+"base": "VBoxContainer",
+"class": "ModeTime",
+"language": "GDScript",
+"path": "res://mode_time.gd"
+} ]
+_global_script_class_icons={
+"LabeledTextEdit": "",
+"ModeTime": ""
+}
+
 [application]
 
 config/name="Red Light Green Light"

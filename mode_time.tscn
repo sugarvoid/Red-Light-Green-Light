@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://labeled_textedit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://mode_time.gd" type="Script" id=2]
+
+[node name="ModeTime" type="VBoxContainer"]
+margin_right = 142.0
+margin_bottom = 71.0
+script = ExtResource( 2 )
+
+[node name="MinTime" parent="." instance=ExtResource( 1 )]
+margin_right = 142.0
+margin_bottom = 33.0
+
+[node name="MaxTime" parent="." instance=ExtResource( 1 )]
+margin_top = 37.0
+margin_right = 142.0
+margin_bottom = 71.0
