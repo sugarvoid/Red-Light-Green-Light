@@ -34,7 +34,6 @@ func _start_new_round():
 	_update_square_color()
 	rng.randomize()
 	var round_length: int = rng.randi_range(go_time.get_min_time(), go_time.get_max_time())
-	#var round_length: float = rng.randf_range(green_min, green_max)
 	print(str('Round ', self.current_round))
 	print(str('Green for ', round_length, ' seconds'))
 	self.timer.start(round_length)
@@ -45,7 +44,6 @@ func _start_rest_mode():
 	_update_square_color()
 	rng.randomize()
 	var round_length: int = rng.randi_range(rest_time.get_min_time(), rest_time.get_max_time())
-	#var round_length: float = rng.randf_range(red_min, red_max)
 	print(str('Red for ', round_length, ' seconds'))
 	self.timer.start(round_length)
 
@@ -53,10 +51,10 @@ func _start_rest_mode():
 func _start_game():
 	if self.go_time.has_blank_spots() || self.rest_time.has_blank_spots():
 		return
-	
 	self.current_round = 1
 	self.total_rounds = int(txt_rounds.text)
 	self._start_new_round()
+
 
 func _on_timer_timeout():
 	if self.state == STATES.GREEN:
@@ -73,11 +71,10 @@ func _on_timer_timeout():
 		
 
 func _clear_txt_boxes() -> void:
-	self.txt_green_min.text = ""
-	self.txt_green_max.text = ""
-	self.txt_red_min.text = ""
-	self.txt_red_max.text = ""
 	self.txt_rounds.text = ""
+	self.go_time.clear_text_edits()
+	self.rest_time.clear_text_edits()
+
 
 func _update_square_color():
 	match self.state:

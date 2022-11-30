@@ -14,3 +14,6 @@ func is_blank() -> bool:
 
 func get_text_edit_vaule() -> String:
 	return text_edit.text
+	
+func clear_text_edit() -> void:
+	self.text_edit.text = ""

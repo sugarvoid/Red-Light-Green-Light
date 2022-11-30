@@ -10,6 +10,10 @@ func _ready():
 	self.min_time.set_label_text("Min")
 	self.max_time.set_label_text("Max")
 	
+func clear_text_edits() -> void:
+	self.min_time.clear_text_edit()
+	self.max_time.clear_text_edit()
+	
 
 func has_blank_spots() -> bool:
 	return self.min_time.is_blank() || self.max_time.is_blank()
