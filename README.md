@@ -1,3 +1,3 @@
 # red-light-green-light
 
-Simple red light, green light app. Not a game. 
+Simple red light, green light app made with Godot. Not a game. 
