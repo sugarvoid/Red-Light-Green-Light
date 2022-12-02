@@ -10,6 +10,8 @@ onready var btn_start: Button = get_node("BtnStart")
 onready var txt_game_min: TextEdit = get_node("TxtRounds")
 onready var light: Sprite = get_node("Light")
 
+onready var aud_ding: AudioStreamPlayer = get_node("AudDing")
+
 
 enum STATES {
 	RED,
@@ -35,6 +37,7 @@ func _start_new_round():
 	_update_square_color()
 	var round_length: int = self._get_round_length(go_time.get_min_time(), go_time.get_max_time()) 
 	print(str('Green for ', round_length, ' seconds'))
+	self._play_ding()
 	self.timer.start(round_length)
 
 
@@ -43,6 +46,7 @@ func _start_rest_mode():
 	_update_square_color()
 	var round_length: int = self._get_round_length(rest_time.get_min_time(), rest_time.get_max_time()) 
 	print(str('Red for ', round_length, ' seconds'))
+	self._play_ding()
 	self.timer.start(round_length)
 
 
@@ -80,6 +84,9 @@ func _update_square_color():
 			self.light.frame = 1
 		STATES.NOT_PLAYING:
 			self.light.frame = 0
+
+func _play_ding() -> void:
+	self.aud_ding.play()
 
 func _game_over():
 	self.state = STATES.NOT_PLAYING

@@ -73,3 +73,5 @@ margin_bottom = 157.0
 
 [node name="TmrMain" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudDing" type="AudioStreamPlayer" parent="."]
