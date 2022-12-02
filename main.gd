@@ -1,19 +1,12 @@
 extends Control
 
 onready var tmr_main: Timer = get_node("TmrMain")
-
-
-onready var timer: Timer = get_node("Timer")
+onready var tmr_round: Timer = get_node("Timer")
 onready var btn_start: Button = get_node("BtnStart")
-
 onready var txt_game_min: TextEdit = get_node("TxtRounds")
-
-
 onready var opb_go: OptionButton = get_node("OpbGo")
 onready var opb_rest: OptionButton = get_node("OpbRest")
-
 onready var color_square: ColorRect = get_node("colorSquare")
-
 onready var aud_ding: AudioStreamPlayer = get_node("AudDing")
 
 const TIMES: Dictionary = {
@@ -51,7 +44,7 @@ func _ready():
 	self._inlarge_window()
 	self.rng = RandomNumberGenerator.new()
 	self.tmr_main.connect("timeout", self, "_game_over")
-	self.timer.connect("timeout", self, "_on_timer_timeout")
+	self.tmr_round.connect("timeout", self, "_on_timer_timeout")
 	self.btn_start.connect("pressed", self, "_start_game")
 
 
@@ -75,7 +68,7 @@ func _start_new_round():
 	
 	print(str('Green for ', round_length, ' seconds'))
 	
-	self.timer.start(round_length)
+	self.tmr_round.start(round_length)
 
 
 func _start_rest_mode():
@@ -95,14 +88,10 @@ func _start_rest_mode():
 	var round_length: int = self._get_round_length(min_s, max_s) 
 	print(str('Red for ', round_length, ' seconds'))
 	$AudWait.play()
-	self.timer.start(round_length)
+	self.tmr_round.start(round_length)
 
 
 func _start_game():
-	
-	print(opb_go.selected)
-	
-	
 	if self.txt_game_min.text.empty():
 		return
 	self.game_length = int(txt_game_min.text) * 60
@@ -123,15 +112,15 @@ func _clear_txt_boxes() -> void:
 	self.go_time.clear_text_edits()
 	self.rest_time.clear_text_edits()
 
+
 func _get_round_length(lowest: int, highest: int) -> int:
 	rng.randomize()
 	return rng.randi_range(lowest, highest) 
-	
+
 
 func _inlarge_window() -> void:
 	OS.set_window_size(Vector2(1650, 900))
-#1650
-#900
+
 
 func _update_square_color():
 	match self.state:
@@ -142,8 +131,10 @@ func _update_square_color():
 		STATES.NOT_PLAYING:
 			self.color_square.color = Color.whitesmoke
 
+
 func _play_ding() -> void:
 	self.aud_ding.play()
+
 
 func _game_over():
 	self.state = STATES.NOT_PLAYING
