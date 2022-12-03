@@ -41,7 +41,7 @@ var game_length: int
 
 func _ready():
 	self.color_square.color = Color.whitesmoke
-	self._inlarge_window()
+	## self._inlarge_window()
 	self.rng = RandomNumberGenerator.new()
 	self.tmr_main.connect("timeout", self, "_game_over")
 	self.tmr_round.connect("timeout", self, "_on_timer_timeout")

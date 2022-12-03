@@ -33,8 +33,7 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=550
-window/size/height=300
+window/size/width=1100
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
