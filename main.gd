@@ -11,19 +11,19 @@ onready var aud_ding: AudioStreamPlayer = get_node("AudDing")
 
 const TIMES: Dictionary = {
 	# Short Rounds
-	'red_short_min': 3,
-	'red_short_max': 8,
+	'red_short_min': 3.0,
+	'red_short_max': 8.0,
 	
-	'green_short_min': 3,
-	'green_short_max': 10,
+	'green_short_min': 4.0,
+	'green_short_max': 9.0,
 	
 	
 	# Long Rounds
-	'red_long_min': 10,
-	'red_long_max': 20,
+	'red_long_min': 10.0,
+	'red_long_max': 20.0,
 	
-	'green_long_min': 6,
-	'green_long_max': 15,
+	'green_long_min': 6.0,
+	'green_long_max': 15.0,
 }
 
 enum STATES {
@@ -49,8 +49,8 @@ func _ready():
 
 
 func _start_new_round():
-	var min_s: int
-	var max_s: int
+	var min_s: float
+	var max_s: float
 	self._play_ding()
 	self.state = STATES.GREEN
 	$AudWait.stop()
@@ -64,7 +64,7 @@ func _start_new_round():
 			min_s = self.TIMES.green_long_min
 			max_s = self.TIMES.green_long_max
 	
-	var round_length: int = self._get_round_length(min_s, max_s) 
+	var round_length: float = self._get_round_length(min_s, max_s) 
 	
 	print(str('Green for ', round_length, ' seconds'))
 	
@@ -72,8 +72,8 @@ func _start_new_round():
 
 
 func _start_rest_mode():
-	var min_s: int
-	var max_s: int
+	var min_s: float
+	var max_s: float
 	self.state = STATES.RED
 	_update_square_color()
 	
@@ -85,7 +85,7 @@ func _start_rest_mode():
 			min_s = self.TIMES.red_long_min
 			max_s = self.TIMES.red_long_max
 	
-	var round_length: int = self._get_round_length(min_s, max_s) 
+	var round_length: float = self._get_round_length(min_s, max_s) 
 	print(str('Red for ', round_length, ' seconds'))
 	$AudWait.play()
 	self.tmr_round.start(round_length)
@@ -112,9 +112,9 @@ func _clear_txt_boxes() -> void:
 	self.txt_game_min.text = ""
 
 
-func _get_round_length(lowest: int, highest: int) -> int:
+func _get_round_length(lowest: float, highest: float) -> float:
 	rng.randomize()
-	return rng.randi_range(lowest, highest) 
+	return rng.randf_range(lowest, highest) 
 
 
 func _inlarge_window() -> void:
