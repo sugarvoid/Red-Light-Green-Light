@@ -94,7 +94,7 @@ func _start_rest_mode():
 func _start_game():
 	if self.txt_game_min.text.empty():
 		return
-	self.game_length = int(txt_game_min.text) * 60
+	self.game_length = int(txt_game_min.text)* 60
 	self.tmr_main.start(game_length)
 	self._start_new_round()
 
@@ -108,9 +108,8 @@ func _on_timer_timeout():
 
 func _clear_txt_boxes() -> void:
 	print('game over')
+
 	self.txt_game_min.text = ""
-	self.go_time.clear_text_edits()
-	self.rest_time.clear_text_edits()
 
 
 func _get_round_length(lowest: int, highest: int) -> int:
@@ -137,7 +136,8 @@ func _play_ding() -> void:
 
 
 func _game_over():
+	$AudWait.stop()
 	self.state = STATES.NOT_PLAYING
 	self._clear_txt_boxes()
-	self.timer.stop()
+	self.tmr_main.stop()
 	_update_square_color()
