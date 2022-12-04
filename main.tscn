@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://san42_white.tres" type="DynamicFont" id=2]
+[ext_resource path="res://davidbain__end-game-fail.wav" type="AudioStream" id=3]
 [ext_resource path="res://vataaa_metronome.wav" type="AudioStream" id=4]
 [ext_resource path="res://inspectorj__bell-counter.wav" type="AudioStream" id=5]
 
@@ -57,6 +58,9 @@ one_shot = true
 
 [node name="AudDing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="AudDone" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [node name="AudWait" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

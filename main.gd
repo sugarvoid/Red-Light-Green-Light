@@ -19,11 +19,11 @@ const TIMES: Dictionary = {
 	
 	
 	# Long Rounds
-	'red_long_min': 10.0,
-	'red_long_max': 20.0,
+	'red_long_min': 9.0,
+	'red_long_max': 19.0,
 	
-	'green_long_min': 6.0,
-	'green_long_max': 15.0,
+	'green_long_min': 7.0,
+	'green_long_max': 17.0,
 }
 
 enum STATES {
@@ -94,7 +94,7 @@ func _start_rest_mode():
 func _start_game():
 	if self.txt_game_min.text.empty():
 		return
-	self.game_length = int(txt_game_min.text)* 60
+	self.game_length = int(txt_game_min.text) * 60
 	self.tmr_main.start(game_length)
 	self._start_new_round()
 
@@ -137,6 +137,7 @@ func _play_ding() -> void:
 
 func _game_over():
 	$AudWait.stop()
+	$AudDone.play()
 	self.state = STATES.NOT_PLAYING
 	self._clear_txt_boxes()
 	self.tmr_main.stop()
